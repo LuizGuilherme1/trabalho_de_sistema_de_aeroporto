@@ -1,7 +1,8 @@
-
 package Entities;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Queue;
 public class Voo {
     private int num_voo;
     private String origin;
@@ -9,6 +10,7 @@ public class Voo {
     private LocalDateTime hora_partida;
     private LocalDateTime hora_chegada;
     private int quantidade_passageiros;
+    public int testCheio;
     
     DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 
@@ -46,6 +48,40 @@ public class Voo {
 
     public int getQuantidade_passageiros() {
         return quantidade_passageiros;
+    }
+    
+    public void showListDisp(Queue<Pendente>pen,List<Voo>voos){
+        int pessoas_abordo=0;
+        for(Voo v:voos){
+            for(Pendente p:pen){
+                if(p.getId()==num_voo){
+                pessoas_abordo++;
+                }
+            }
+            System.out.println("Numero: "+num_voo
+                +"Origem: "+origin
+                +"Destino: "+destino
+                +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+                +"Quantidade de passageiros: "+(testCheio=quantidade_passageiros-pessoas_abordo));
+        }
+    }
+    
+    public void showListCheio(Queue<Pendente>pen,List<Voo>voos){
+        int pessoas_abordo=0;
+        for(Voo v:voos){
+            for(Pendente p:pen){
+                if(p.getId()==num_voo){
+                pessoas_abordo++;
+                }
+            }
+            if((quantidade_passageiros-pessoas_abordo)<=0){
+            System.out.println("Numero: "+num_voo
+                +"Origem: "+origin
+                +"Destino: "+destino
+                +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+                +"Quantidade de passageiros: Cheio");
+            }
+        }
     }
 
     @Override
