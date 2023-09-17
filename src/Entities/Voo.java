@@ -10,7 +10,7 @@ public class Voo {
     private LocalDateTime hora_partida;
     private LocalDateTime hora_chegada;
     private int quantidade_passageiros;
-    public int testCheio;
+    private int testCheio;
     
     DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 
@@ -50,9 +50,8 @@ public class Voo {
         return quantidade_passageiros;
     }
     
-    public void showListDisp(Queue<Pendente>pen,List<Voo>voos){
+    public void showListDisp(Queue<Pendente>pen){
         int pessoas_abordo=0;
-        for(Voo v:voos){
             for(Pendente p:pen){
                 if(p.getId()==num_voo){
                 pessoas_abordo++;
@@ -63,25 +62,37 @@ public class Voo {
                 +"Destino: "+destino
                 +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
                 +"Quantidade de passageiros: "+(testCheio=quantidade_passageiros-pessoas_abordo));
-        }
     }
     
-    public void showListCheio(Queue<Pendente>pen,List<Voo>voos){
+    public void showListCheio(Queue<Pendente>pen){
         int pessoas_abordo=0;
-        for(Voo v:voos){
-            for(Pendente p:pen){
-                if(p.getId()==num_voo){
-                pessoas_abordo++;
-                }
-            }
-            if((quantidade_passageiros-pessoas_abordo)<=0){
-            System.out.println("Numero: "+num_voo
-                +"Origem: "+origin
-                +"Destino: "+destino
-                +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
-                +"Quantidade de passageiros: Cheio");
+          for(Pendente p:pen){
+              if(p.getId()==num_voo){
+              pessoas_abordo++;
+              }
+          }
+          if((quantidade_passageiros-pessoas_abordo)<=0){
+          System.out.println("Numero: "+num_voo
+              +"Origem: "+origin
+              +"Destino: "+destino
+              +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+              +"Quantidade de passageiros: Cheio");
+          }
+    }
+    public boolean testCheio(Queue<Pendente>pen){
+        int cheio;
+        int pessoas_abordo=0;
+        for(Pendente p:pen){
+            if(p.getId()==num_voo){
+            pessoas_abordo++;
             }
         }
+        cheio = quantidade_passageiros-pessoas_abordo;
+            if(cheio==0){
+                return true;
+            }else{
+                return false;
+            }
     }
 
     @Override
