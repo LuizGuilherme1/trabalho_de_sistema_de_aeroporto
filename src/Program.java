@@ -1,6 +1,12 @@
 import Entities.Pendente;
 import Entities.Usuario;
 import Entities.Voo;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Stack;
@@ -9,10 +15,30 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException{
          List<Voo>voos=new ArrayList<>();
          Queue<Pendente>pen=new LinkedList<>();
-         
+         DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+         //file
+         /* need to fix
+         String path ="C:\\voos.txt";
+         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+	     String line = br.readLine();
+	     while (line != null) {
+	     	 String[] fields = line.split("|");
+                 int id = Integer.parseInt(fields[0]);
+	     	 String origen = fields[1];
+                 String destino = fields[2];
+                 LocalDateTime partida = LocalDateTime.parse(fields[3],f1);
+                 LocalDateTime chegada = LocalDateTime.parse(fields[4], f1);
+	     	 int maxpa = Integer.parseInt(fields[5]);
+                 voos.add(new Voo(id, origen, destino, partida, chegada, maxpa));
+	     }
+	 } catch (IOException e) {
+	 	System.out.println("Error: " + e.getMessage());
+	 }
+         */
+         //file end
          Locale.setDefault(Locale.US);
          Scanner s=new Scanner(System.in);
          for(Voo e:voos){
@@ -57,12 +83,18 @@ public class Program {
                  if(!v.testCheio(pen)){
                      v.showListDisp(pen);
                      System.out.println("-----------------------");
+                 }else{
+                     System.out.print("");
                  }
              }
              System.out.println("lista de voos reservados: ");
              for(Pendente p:pen){
-                 p.showListPend(voos);
-                 System.out.println("-----------------------");
+                 if(p!=null){
+                     p.showListPend(voos);
+                     System.out.println("-----------------------");
+                 }else{
+                     System.out.print("");
+                 }
              }
              System.out.println("lista de voos cheios: ");
              for(Voo v:voos){
