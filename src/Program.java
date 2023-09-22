@@ -42,9 +42,16 @@ public class Program {
          int num=1000;
          String origen ="Brazil";
          String destino ="Usa";
-         LocalDateTime partida = LocalDateTime.parse("20/12/2004 12:00", f1);
-         LocalDateTime chegada = LocalDateTime.parse("30/12/2005 02:12", f1);
+         LocalDateTime partida = LocalDateTime.parse("20/12/2023 12:00", f1);
+         LocalDateTime chegada = LocalDateTime.parse("02/01/2024 02:12", f1);
          int max=12;
+         voos.add(new Voo(num, origen, destino, partida, chegada, max));
+         num=2001;
+         origen="Usa";
+         destino="Japão";
+         partida=LocalDateTime.parse("20/12/2023 10:23", f1);
+         chegada=LocalDateTime.parse("30/12/2023 11:11", f1);
+         max=1;
          voos.add(new Voo(num, origen, destino, partida, chegada, max));
          
          Locale.setDefault(Locale.US);
@@ -53,64 +60,87 @@ public class Program {
              System.out.println(e.toString());
              System.out.println("-----------------------");
          }
-         System.out.println("deseja fazer uma reserva(y/n)");
-         char choice=s.next().charAt(0);
-         if(choice=='y'){
+         //inicio
+         System.out.println("escreva 1 para fazer uma reserva.");
+         System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+         System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+         System.out.println("ecreva 4 para sair");
+         int i=s.nextInt();
          do{
-             System.out.print("escreva o numero do voo: ");
-             int id=s.nextInt();
-             for(Voo v:voos){
-                 if(id==v.getNum_voo()&&!v.testCheio(pen)){
-                     System.out.print("escreva o seu nome: ");
-                     s.nextLine();
-                     String nome=s.nextLine();
-                     System.out.print("escreva o sua idade: ");
-                     int idade=s.nextInt();
-                     System.out.print("escreva o seu cpf: ");
-                     String cpf=s.nextLine();
-                     System.out.print("escreva o seu e-mail: ");
-                     String email=s.nextLine();
-                     Pendente pend =new Pendente(new Usuario(nome, cpf, email, idade), id);
-                     pen.add(pend);
-                     System.out.println("gostaria de fazer outra reserva(y/n)");
-                     choice=s.next().charAt(0);
-                  }else if(id==v.getNum_voo()&&!v.testCheio(pen)){
-                     System.out.println("este voo esta cheio");
-                     System.out.println("gostaria de fazer outra reserva(y/n)");
-                     choice=s.next().charAt(0);
-                 }else{
-                     System.out.println("este voo nâo existe.");
-                     System.out.println("gostaria de fazer outra reserva(y/n)");
-                     choice=s.next().charAt(0);
-                  }
-             }
-         }while(choice!='n');
-         }else{
-             System.out.println("lista de voos disponiveis: ");
-             for(Voo v:voos){
-                 if(!v.testCheio(pen)){
-                     v.showListDisp(pen);
-                     System.out.println("-----------------------");
-                 }else{
-                     System.out.print("");
-                 }
-             }
-             System.out.println("lista de voos reservados: ");
-             for(Pendente p:pen){
-                 if(p!=null){
-                     p.showListPend(voos);
-                     System.out.println("-----------------------");
-                 }else{
-                     System.out.print("");
-                 }
-             }
-             System.out.println("lista de voos cheios: ");
-             for(Voo v:voos){
-                 if(v.testCheio(pen)){
-                     v.showListCheio(pen);
-                     System.out.println("-----------------------");
-                 }
-             }
-         }
-    }
+             if(i==1){
+                 System.out.println("deseja fazer uma reserva(y/n)");
+                 char choice=s.next().charAt(0);
+                 if(choice=='y'){
+                 do{
+                     System.out.print("escreva o numero do voo: ");
+                     int id=s.nextInt();
+                     for(Voo v:voos){
+                         if(id==v.getNum_voo()&&!v.testCheio(pen)){
+                             System.out.print("escreva o seu nome: ");
+                             s.nextLine();
+                             String nome=s.nextLine();
+                             System.out.print("escreva o sua idade: ");
+                             int idade=s.nextInt();
+                             System.out.print("escreva o seu cpf: ");
+                             String cpf=s.nextLine();
+                             System.out.print("escreva o seu e-mail: ");
+                             String email=s.nextLine();
+                             Pendente pend =new Pendente(new Usuario(nome, cpf, email, idade), id);
+                             pen.add(pend);
+                             System.out.println("gostaria de fazer outra reserva(y/n)");
+                             choice=s.next().charAt(0);
+                          }else if(id==v.getNum_voo()&&!v.testCheio(pen)){
+                             System.out.println("este voo esta cheio");
+                             System.out.println("gostaria de fazer outra reserva(y/n)");
+                             choice=s.next().charAt(0);
+                         }else{
+                             System.out.println("este voo nâo existe.");
+                             System.out.println("gostaria de fazer outra reserva(y/n)");
+                             choice=s.next().charAt(0);
+                             }
+                     }
+                      }while(choice!='n');
+              }else if(choice=='n'){
+                     System.out.println("escreva 1 para fazer uma reserva.");
+                     System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                     System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                     System.out.println("ecreva 4 para sair");
+                     i=s.nextInt();
+              }else{
+                     System.out.println("não e uma opção(y/n)");
+                     choice = s.next().charAt(0);
+                     }
+          }else if(i==2){
+                 System.out.println("");
+                 
+                 
+          }else if(i==3){
+                   System.out.println("lista de voos disponiveis: ");
+                   for(Voo v:voos){
+                       if(!v.testCheio(pen)){
+                           v.showListDisp(pen);
+                           System.out.println("-----------------------");
+                       }else{
+                           System.out.print("");
+                       }
+                   }
+                   System.out.println("lista de voos reservados: ");
+                   for(Pendente p:pen){
+                       if(p!=null){
+                           p.showListPend(voos);
+                           System.out.println("-----------------------");
+                       }else{
+                           System.out.print("");
+                       }
+                   }
+                   System.out.println("lista de voos cheios: ");
+                   for(Voo v:voos){
+                       if(v.testCheio(pen)){
+                           v.showListCheio(pen);
+                           System.out.println("-----------------------");
+                       }
+                   }
+               } 
+         }while(i!=4);
+}
 }
