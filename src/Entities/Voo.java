@@ -10,7 +10,6 @@ public class Voo {
     private LocalDateTime hora_partida;
     private LocalDateTime hora_chegada;
     private int quantidade_passageiros;
-    private int testCheio;
     
     DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 
@@ -58,10 +57,10 @@ public class Voo {
                 }
             }
             System.out.println("Numero: "+num_voo
-                +"Origem: "+origin
-                +"Destino: "+destino
-                +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
-                +"Quantidade de passageiros: "+(testCheio=quantidade_passageiros-pessoas_abordo));
+                +"\n Origem: "+origin
+                +"\n Destino: "+destino
+                +"\n Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+                +"\n Quantidade de passageiros: "+(quantidade_passageiros-pessoas_abordo));
     }
     
     public void showListCheio(Queue<Pendente>pen){
@@ -73,10 +72,10 @@ public class Voo {
           }
           if((quantidade_passageiros-pessoas_abordo)<=0){
           System.out.println("Numero: "+num_voo
-              +"Origem: "+origin
-              +"Destino: "+destino
-              +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
-              +"Quantidade de passageiros: Cheio");
+              +"\n Origem: "+origin
+              +"\n Destino: "+destino
+              +"\n Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+              +"\n Quantidade de passageiros: Cheio");
           }
     }
     public boolean testCheio(Queue<Pendente>pen){
@@ -98,10 +97,10 @@ public class Voo {
     @Override
     public String toString() {
         return "Numero: "+num_voo
-                +"Origem: "+origin
-                +"Destino: "+destino
-                +"Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
-                +"Quantidade de passageiros: "+quantidade_passageiros;
+                +"\n Origem: "+origin
+                +"\n Destino: "+destino
+                +"\n Horario de pardida: "+f1.format(hora_partida)+" Horario de chegada: "+f1.format(hora_chegada)
+                +"\n Quantidade de passageiros: "+quantidade_passageiros;
     }
     
 }

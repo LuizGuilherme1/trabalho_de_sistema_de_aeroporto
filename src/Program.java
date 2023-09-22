@@ -18,7 +18,7 @@ public class Program {
     public static void main(String[] args) throws ParseException{
          List<Voo>voos=new ArrayList<>();
          Queue<Pendente>pen=new LinkedList<>();
-         DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+         DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
          //file
          /* need to fix
          String path ="C:\\voos.txt";
@@ -39,6 +39,14 @@ public class Program {
 	 }
          */
          //file end
+         int num=1000;
+         String origen ="Brazil";
+         String destino ="Usa";
+         LocalDateTime partida = LocalDateTime.parse("20/12/2004 12:00", f1);
+         LocalDateTime chegada = LocalDateTime.parse("30/12/2005 02:12", f1);
+         int max=12;
+         voos.add(new Voo(num, origen, destino, partida, chegada, max));
+         
          Locale.setDefault(Locale.US);
          Scanner s=new Scanner(System.in);
          for(Voo e:voos){

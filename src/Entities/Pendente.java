@@ -21,9 +21,9 @@ public class Pendente {
         for(Voo v:voos){
             if(id==v.getNum_voo()){
               System.out.println("Numero: "+v.getNum_voo()
-              +"Origem: "+v.getOrigin()
-              +"Destino: "+v.getDestino()
-              +"Horario de pardida: "+v.f1.format(v.getHora_partida())+" Horario de chegada: "+v.f1.format(v.getHora_chegada()));
+              +"\n Origem: "+v.getOrigin()
+              +"\n Destino: "+v.getDestino()
+              +"\n Horario de pardida: "+v.f1.format(v.getHora_partida())+" Horario de chegada: "+v.f1.format(v.getHora_chegada()));
             }
         }
     }
