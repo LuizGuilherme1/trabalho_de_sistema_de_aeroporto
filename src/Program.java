@@ -140,7 +140,15 @@ public class Program {
                            System.out.println("-----------------------");
                        }
                    }
-               } 
+             }else{
+                 System.out.println("não e uma opição valida");
+                 System.out.println("---------------------------");
+                 System.out.println("escreva 1 para fazer uma reserva.");
+                     System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                     System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                     System.out.println("ecreva 4 para sair");
+                     i=s.nextInt();
+             }
          }while(i!=4);
 }
 }
