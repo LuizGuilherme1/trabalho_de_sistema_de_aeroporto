@@ -1,3 +1,4 @@
+import Entities.Check_in;
 import Entities.Pendente;
 import Entities.Usuario;
 import Entities.Voo;
@@ -18,6 +19,7 @@ public class Program {
     public static void main(String[] args) throws ParseException{
          List<Voo>voos=new ArrayList<>();
          Queue<Pendente>pen=new LinkedList<>();
+         Stack<Check_in>checkin=new Stack();
          DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
          //file
          /* need to fix
@@ -82,7 +84,7 @@ public class Program {
                              System.out.print("escreva o sua idade: ");
                              int idade=s.nextInt();
                              System.out.print("escreva o seu cpf: ");
-                             String cpf=s.nextLine();
+                             int cpf=s.nextInt();
                              System.out.print("escreva o seu e-mail: ");
                              String email=s.nextLine();
                              Pendente pend =new Pendente(new Usuario(nome, cpf, email, idade), id);
@@ -111,8 +113,31 @@ public class Program {
                      choice = s.next().charAt(0);
                      }
           }else if(i==2){
-                 System.out.println("");
-                 
+                 for(Pendente p:pen){
+                     if(p!=null){
+                           p.showListPend(voos);
+                           System.out.println("-----------------------");
+                       }else{
+                           System.out.print("");
+                       }
+                 }
+                 System.out.println("escolha o numero do voo");
+                 int id=s.nextInt();
+                 List<Pendente>a=new ArrayList<>();
+                 for(Pendente p:pen){
+                     if(p.getId()==id){
+                           p.showListPend(voos);
+                           System.out.println("-----------------------");
+                           a.add(p);
+                       }
+                 }
+                 System.out.println("escolha o cpf");
+                 int cpf=s.nextInt();
+                 for(Pendente p:a){
+                     if(p.getCpf()==cpf){
+                         checkin.add(new Check_in(id, cpf));
+                     }
+                 }
                  
           }else if(i==3){
                    System.out.println("lista de voos disponiveis: ");
