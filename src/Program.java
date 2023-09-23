@@ -50,7 +50,7 @@ public class Program {
          voos.add(new Voo(num, origen, destino, partida, chegada, max));
          num=2001;
          origen="Usa";
-         destino="Japão";
+         destino="Japao";
          partida=LocalDateTime.parse("20/12/2023 10:23", f1);
          chegada=LocalDateTime.parse("30/12/2023 11:11", f1);
          max=1;
@@ -155,8 +155,6 @@ public class Program {
                        if(!v.testCheio(checkin)){
                            v.showListDisp(checkin);
                            System.out.println("-----------------------");
-                       }else{
-                           System.out.print("");
                        }
                    }
                    System.out.println("lista de voos reservados: ");
@@ -164,10 +162,8 @@ public class Program {
                        if(p!=null){
                            p.showListPend(voos);
                            System.out.println("-----------------------");
-                       }else{
-                           System.out.print("");
                        }
-                   }
+                       }
                    System.out.println("lista de voos cheios: ");
                    for(Voo v:voos){
                        if(v.testCheio(checkin)){
@@ -175,7 +171,14 @@ public class Program {
                            System.out.println("-----------------------");
                        }
                    }
-             }else{
+                   System.out.println("escreva 1 para fazer uma reserva.");
+                   System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                   System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                   System.out.println("ecreva 4 para sair");
+                   i=s.nextInt();
+          }else if(i==4){
+                 System.out.println("obrigado por testar");
+          }else{
                  System.out.println("não e uma opição valida");
                  System.out.println("---------------------------");
                  System.out.println("escreva 1 para fazer uma reserva.");
@@ -184,6 +187,6 @@ public class Program {
                      System.out.println("ecreva 4 para sair");
                      i=s.nextInt();
              }
-         }while(i!=4);
+    }while(i!=4);
 }
 }
