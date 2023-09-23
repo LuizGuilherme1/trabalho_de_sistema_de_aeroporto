@@ -3,12 +3,12 @@ package Entities;
 
 public class Check_in {
     private int id;
-    private int cpf;
+    private String cpf;
 
     public Check_in() {
     }
 
-    public Check_in(int id, int cpf) {
+    public Check_in(int id, String cpf) {
         this.id = id;
         this.cpf = cpf;
     }
@@ -17,7 +17,7 @@ public class Check_in {
         return id;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
     

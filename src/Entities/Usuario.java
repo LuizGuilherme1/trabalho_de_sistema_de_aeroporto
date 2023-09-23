@@ -2,14 +2,14 @@ package Entities;
 
 public class Usuario {
     private String nome;
-    private int cpf;
+    private String cpf;
     private String email;
     private int idade;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, int cpf, String email, int idade) {
+    public Usuario(String nome, String cpf, String email, int idade) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -20,7 +20,7 @@ public class Usuario {
         return nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 

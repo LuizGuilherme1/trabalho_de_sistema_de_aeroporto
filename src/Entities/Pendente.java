@@ -3,6 +3,7 @@ package Entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Pendente {
     private Usuario user;
@@ -17,8 +18,19 @@ public class Pendente {
         return id;
     }
     
-    public int getCpf(){
+    public String getCpf(){
         return user.getCpf();
+    }
+    
+    public boolean estaCheio(Stack<Check_in>checkin,List<Voo>voos){
+        for(Check_in c:checkin){
+            for(Voo v:voos){
+                if(c.getId()==v.getNum_voo()&& v.testCheio(checkin)==true){
+                 return true;
+                 }
+            }
+        }
+        return false;
     }
     
     public void showListPend(List<Voo>voos){

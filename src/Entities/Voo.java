@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 public class Voo {
     private int num_voo;
     private String origin;
@@ -49,9 +50,9 @@ public class Voo {
         return quantidade_passageiros;
     }
     
-    public void showListDisp(Queue<Pendente>pen){
+    public void showListDisp(Stack<Check_in>checkin){
         int pessoas_abordo=0;
-            for(Pendente p:pen){
+            for(Check_in p:checkin){
                 if(p.getId()==num_voo){
                 pessoas_abordo++;
                 }
@@ -63,9 +64,9 @@ public class Voo {
                 +"\n Quantidade de passageiros: "+(quantidade_passageiros-pessoas_abordo));
     }
     
-    public void showListCheio(Queue<Pendente>pen){
+    public void showListCheio(Stack<Check_in>checkin){
         int pessoas_abordo=0;
-          for(Pendente p:pen){
+          for(Check_in p:checkin){
               if(p.getId()==num_voo){
               pessoas_abordo++;
               }
@@ -78,10 +79,10 @@ public class Voo {
               +"\n Quantidade de passageiros: Cheio");
           }
     }
-    public boolean testCheio(Queue<Pendente>pen){
+    public boolean testCheio(Stack<Check_in>checkin){
         int cheio;
         int pessoas_abordo=0;
-        for(Pendente p:pen){
+        for(Check_in p:checkin){
             if(p.getId()==num_voo){
             pessoas_abordo++;
             }

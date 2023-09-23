@@ -77,21 +77,21 @@ public class Program {
                      System.out.print("escreva o numero do voo: ");
                      int id=s.nextInt();
                      for(Voo v:voos){
-                         if(id==v.getNum_voo()&&!v.testCheio(pen)){
+                         if(id==v.getNum_voo()&&!v.testCheio(checkin)){
                              System.out.print("escreva o seu nome: ");
                              s.nextLine();
                              String nome=s.nextLine();
                              System.out.print("escreva o sua idade: ");
                              int idade=s.nextInt();
                              System.out.print("escreva o seu cpf: ");
-                             int cpf=s.nextInt();
+                             String cpf=s.next();
                              System.out.print("escreva o seu e-mail: ");
                              String email=s.nextLine();
                              Pendente pend =new Pendente(new Usuario(nome, cpf, email, idade), id);
                              pen.add(pend);
                              System.out.println("gostaria de fazer outra reserva(y/n)");
                              choice=s.next().charAt(0);
-                          }else if(id==v.getNum_voo()&&!v.testCheio(pen)){
+                          }else if(id==v.getNum_voo()&&!v.testCheio(checkin)){
                              System.out.println("este voo esta cheio");
                              System.out.println("gostaria de fazer outra reserva(y/n)");
                              choice=s.next().charAt(0);
@@ -117,33 +117,43 @@ public class Program {
                      if(p!=null){
                            p.showListPend(voos);
                            System.out.println("-----------------------");
-                       }else{
-                           System.out.print("");
                        }
                  }
                  System.out.println("escolha o numero do voo");
                  int id=s.nextInt();
                  List<Pendente>a=new ArrayList<>();
                  for(Pendente p:pen){
-                     if(p.getId()==id){
+                     if(p.getId()==id&&p.estaCheio(checkin, voos)==true){
                            p.showListPend(voos);
                            System.out.println("-----------------------");
                            a.add(p);
-                       }
+                       }else{
+                         System.out.println("perdão este voo esta cheio ou não existe");
+                         System.out.println("escreva 1 para fazer uma reserva.");
+                         System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                         System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                         System.out.println("ecreva 4 para sair");
+                         i=s.nextInt();
+                     }
                  }
                  System.out.println("escolha o cpf");
-                 int cpf=s.nextInt();
+                 String cpf=s.next();
                  for(Pendente p:a){
                      if(p.getCpf()==cpf){
                          checkin.add(new Check_in(id, cpf));
+                         pen.remove(p);
                      }
                  }
-                 
+                 System.out.println("escreva 1 para fazer uma reserva.");
+                 System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                 System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                 System.out.println("ecreva 4 para sair");
+                 i=s.nextInt();
           }else if(i==3){
                    System.out.println("lista de voos disponiveis: ");
                    for(Voo v:voos){
-                       if(!v.testCheio(pen)){
-                           v.showListDisp(pen);
+                       if(!v.testCheio(checkin)){
+                           v.showListDisp(checkin);
                            System.out.println("-----------------------");
                        }else{
                            System.out.print("");
@@ -160,8 +170,8 @@ public class Program {
                    }
                    System.out.println("lista de voos cheios: ");
                    for(Voo v:voos){
-                       if(v.testCheio(pen)){
-                           v.showListCheio(pen);
+                       if(v.testCheio(checkin)){
+                           v.showListCheio(checkin);
                            System.out.println("-----------------------");
                        }
                    }
