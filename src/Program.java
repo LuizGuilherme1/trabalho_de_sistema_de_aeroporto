@@ -91,7 +91,7 @@ public class Program {
                              pen.add(pend);
                              System.out.println("gostaria de fazer outra reserva(y/n)");
                              choice=s.next().charAt(0);
-                          }else if(id==v.getNum_voo()&&!v.testCheio(checkin)){
+                          }else if(id==v.getNum_voo()&&v.testCheio(checkin)){
                              System.out.println("este voo esta cheio");
                              System.out.println("gostaria de fazer outra reserva(y/n)");
                              choice=s.next().charAt(0);
