@@ -70,12 +70,9 @@ public class Program {
          int i=s.nextInt();
          do{
              if(i==1){
-                 System.out.println("deseja fazer uma reserva(y/n)");
-                 char choice=s.next().charAt(0);
-                 if(choice=='y'){
-                 do{
                      System.out.print("escreva o numero do voo: ");
                      int id=s.nextInt();
+                     boolean test = false;
                      for(Voo v:voos){
                          if(id==v.getNum_voo()&&!v.testCheio(checkin)){
                              System.out.print("escreva o seu nome: ");
@@ -89,28 +86,22 @@ public class Program {
                              String email=s.nextLine();
                              Pendente pend =new Pendente(new Usuario(nome, cpf, email, idade), id);
                              pen.add(pend);
-                             System.out.println("gostaria de fazer outra reserva(y/n)");
-                             choice=s.next().charAt(0);
-                          }else if(id==v.getNum_voo()&&v.testCheio(checkin)){
-                             System.out.println("este voo esta cheio");
-                             System.out.println("gostaria de fazer outra reserva(y/n)");
-                             choice=s.next().charAt(0);
-                         }else{
-                             System.out.println("este voo nâo existe.");
-                             System.out.println("gostaria de fazer outra reserva(y/n)");
-                             choice=s.next().charAt(0);
-                             }
-                     }
-                      }while(choice!='n');
-              }else if(choice=='n'){
+                             System.out.println("escreva 1 para fazer uma reserva.");
+                             System.out.println("escreva 2 para fazer um check-in de uma reserva.");
+                             System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
+                             System.out.println("ecreva 4 para sair");
+                             i=s.nextInt();
+                             test=true;
+                          }
+                     }if(test==false){
+                     System.out.println("este voo nâo exist ou ele esta cheio.");
                      System.out.println("escreva 1 para fazer uma reserva.");
                      System.out.println("escreva 2 para fazer um check-in de uma reserva.");
                      System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
                      System.out.println("ecreva 4 para sair");
                      i=s.nextInt();
-              }else{
-                     System.out.println("não e uma opção(y/n)");
-                     choice = s.next().charAt(0);
+                     }else{
+                         System.out.println("");
                      }
           }else if(i==2){
                  for(Pendente p:pen){
