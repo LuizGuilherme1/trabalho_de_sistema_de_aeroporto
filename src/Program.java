@@ -2,9 +2,6 @@ import Entities.Check_in;
 import Entities.Pendente;
 import Entities.Usuario;
 import Entities.Voo;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,26 +18,7 @@ public class Program {
          Queue<Pendente>pen=new LinkedList<>();
          Stack<Check_in>checkin=new Stack();
          DateTimeFormatter f1=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-         //file
-         /* need to fix
-         String path ="C:\\voos.txt";
-         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-	     String line = br.readLine();
-	     while (line != null) {
-	     	 String[] fields = line.split("|");
-                 int id = Integer.parseInt(fields[0]);
-	     	 String origen = fields[1];
-                 String destino = fields[2];
-                 LocalDateTime partida = LocalDateTime.parse(fields[3],f1);
-                 LocalDateTime chegada = LocalDateTime.parse(fields[4], f1);
-	     	 int maxpa = Integer.parseInt(fields[5]);
-                 voos.add(new Voo(id, origen, destino, partida, chegada, maxpa));
-	     }
-	 } catch (IOException e) {
-	 	System.out.println("Error: " + e.getMessage());
-	 }
-         */
-         //file end
+         
          int num=1000;
          String origen ="Brazil";
          String destino ="Usa";
@@ -118,22 +96,15 @@ public class Program {
                            p.showListPend(voos);
                            System.out.println("-----------------------");
                            a.add(p);
-                       }else{
-                         System.out.println("perdão este voo esta cheio ou não existe");
-                         System.out.println("escreva 1 para fazer uma reserva.");
-                         System.out.println("escreva 2 para fazer um check-in de uma reserva.");
-                         System.out.println("escreva 3 para ver os voos disponiveis,pendentes e cheios");
-                         System.out.println("ecreva 4 para sair");
-                         i=s.nextInt();
-                     }
-                 }
-                 System.out.println("escolha o cpf");
-                 String cpf=s.next();
-                 for(Pendente p:a){
-                     if(p.getCpf()==cpf){
-                         checkin.add(new Check_in(id, cpf));
-                         pen.remove(p);
-                     }
+                           System.out.println("escolha o cpf");
+                           String cpf=s.next();
+                           for(Pendente pe:a){
+                             if(cpf==pe.getCpf()){
+                                 checkin.add(new Check_in(id, cpf));
+                                 pen.remove(p);
+                                 }
+                             }
+                       }
                  }
                  System.out.println("escreva 1 para fazer uma reserva.");
                  System.out.println("escreva 2 para fazer um check-in de uma reserva.");
