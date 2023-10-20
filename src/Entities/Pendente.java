@@ -1,4 +1,3 @@
-
 package Entities;
 
 import java.util.ArrayList;
